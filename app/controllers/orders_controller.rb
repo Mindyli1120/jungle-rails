@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    
   end
 
   def create
@@ -67,4 +68,10 @@ class OrdersController < ApplicationController
     total
   end
 
+  def order_created
+    line_item = LineItem.where(order_id: @order.id)
+    line_item.each do |line_item|
+      @product = Product.find_by(id: product_id) 
+    end
+  end
 end
