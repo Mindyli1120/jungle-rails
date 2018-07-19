@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thank you for shopping at Jungle</h1>
+    <p>
+      Your order has successfully placed.<br>
+    </p>
+  <table class="table table-bordered">
+  <thead>
+        <tr>
+          <th colspan="2">Product</th>
+          <th>Unit Price</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+    </thead>
+  <tbody>
+  <% @order_created %>
+  <% line_item = LineItem.where(order_id: @order.id) %>
+   <% line_item.each do |line_item| %>
+  <%= render './orders/item', product_id: line_item.product_id, line_item: line_item %>
+    <% end %>
+  </tbody>
+  <tfoot>
+        <tr>
+          <th colspan="4">
+            TOTAL:
+          </th>
+          <th>
+            <%= @order.total %>
+          </th>
+        </tr>
+      </tfoot>
+  </table>
+    <p>Thanks for your order and have a great day!</p>
+  </body>
+</html>
