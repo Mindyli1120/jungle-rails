@@ -5,13 +5,10 @@
   </header>
 
   <article class="product-detail">
-
     <div class="row">
-
       <div class="col-sm-4">
         <%= image_tag @product.image.url, class: 'main-img' %>
       </div>
-
       <div class="col-sm-8">
         <dl class="dl-horizontal">
           <dt>Name</dt>
@@ -25,7 +22,48 @@
         </dl>
       </div>
     </div>
-
-  </article>
+  
+  <br><h2 class="page-header">Reviews</h2>
+        <form class="form-horizontal center my-form" role="form">
+        <% if current_user %>
+        <%= form_for :review, url: product_reviews_path(@product.id)  do |f| %>
+          <div class="form-group">
+          <%= f.label 'Rating for this product:' %>
+          <%= f.select :rating, [['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]] %>
+          </div>
+          <div class="form-group">
+          <%= f.text_area :description, placeholder: "Leave a comment...", class:"form-control" %>
+          </div>
+          <div class="form-group">
+          <%= f.submit 'Submit', class: 'btn btn-default btn-primary' %>
+          </div>
+          <% end %>
+        </form>
+        <% else %>
+        <div>
+        <h4>Please login to write a review.</h4>
+        <% end %>
+        </div>
+      </div>
+    </article>  
+    <% @reviews.reverse.each do |review| %>
+       
+      <% @users = User.where(id: review.user_id) %>
+      <% @users.each do |user| %>
+      <div class="well">
+      <h4>user:
+      <%= user.first_name %>
+      <% review.rating.times do |star| %>
+        ⭐️
+       <% end %>
+      </h4>
+      <p><%= review.description %></p>
+      <% if user == current_user %>
+      <%= link_to 'Delete', "/products/#{review.product_id}/reviews/#{review.id}", method: :delete, class: 'btn btn-danger' %>
+      <% end %>
+      </div>
+      <% end %>
+      <% end %>
+    
 
 </section>

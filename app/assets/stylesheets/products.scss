@@ -88,3 +88,11 @@ nav .navbar-users {
   position: absolute;
   margin: 15px;
 }
+
+.my-form {
+  height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 15px;
+ }
