@@ -16,7 +16,9 @@ A mini e-commerce application built with Rails 4.2 for purposes of teaching Rail
 9. Run `bin/rails s -b 0.0.0.0` to start the server
 
 ## Final Project
-![img1]()
+![img1](https://github.com/Mindyli1120/jungle-rails/blob/master/document/jungle01.png?raw=true)
+
+![img2](https://github.com/Mindyli1120/jungle-rails/blob/master/document/jungle02.png?raw=true)
 
 ## Stripe Testing
 
